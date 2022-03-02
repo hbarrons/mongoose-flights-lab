@@ -1,8 +1,10 @@
+import methodOverride from "method-override";
 import { Flight } from "../models/flight.js";
+import { Meal } from "../models/meal.js"
 
 
 function index(req,res){
-  Flight.find({}, function(error, flights){
+  Flight.find({}).sort('departs').exec(function(error, flights){
     res.render('flights/index.ejs', {
       flights: flights,
       error: error,
@@ -18,7 +20,9 @@ function newFlight (req,res){
   const dt = newFlight.departs;
   // Format the date for the value attribute of the input
   const departsDate = dt.toISOString().slice(0, 16);
-  res.render('flights/new', {departsDate});
+  res.render('flights/new', {
+    title: 'Add Flight'
+  });
 }
 
 const create = (req, res) => {
@@ -28,15 +32,19 @@ const create = (req, res) => {
   flight.save(err=> {
       if(err) return res.redirect('/flights/new')
   })
-  res.redirect('/flights')
-  console.log(req.body)
+  res.redirect(`/flights/${flight._id}`)
 }
 
 function show(req,res){
-  Flight.findById(req.params.id, function(error, flight){
-    res.render("flights/show",{
-      flight: flight,
-      title: "Flight Information",
+  Flight.findById(req.params.id)
+  .populate('meals')
+  .exec(function(error, flight){
+    Meal.find({_id: {$nin: flight.meal}}, function(error, meals){
+      res.render("flights/show",{
+        flight: flight,
+        title: "Flight Information",
+        meals: meals,
+      })
     })
   })
 }
@@ -72,6 +80,21 @@ function createTicket (req,res){
   })
 }
 
+// function deleteTicket (req,res){
+//   Flight.findByIdAndDelete(req.params.id, function(error,flight){
+//     res.redirect(`/flights/${flight._id}`)
+//   })
+// }
+
+function addToFlight(req,res){
+  Flight.findById(req.params.id, function(error, flight){
+    flight.meals.push(req.body.mealId)
+    flight.save(function(error){
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 export {
   index,
   newFlight as new,
@@ -81,4 +104,6 @@ export {
   update,
   deleteFlight as delete,
   createTicket,
+  // deleteTicket,
+  addToFlight,
 }
