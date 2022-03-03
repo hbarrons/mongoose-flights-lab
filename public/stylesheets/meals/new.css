@@ -2,7 +2,6 @@ form {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 1.6rem;
-  margin-bottom: 2rem
 }
 
 form * {

@@ -20,10 +20,9 @@ html {
 }
 
 body {
-  background-color: gray;
   /* Use a system font, if none are available use an available sans-sarif font */
   margin: 0;
-  color: #424748;
+  color: #052025;
   min-height: 100vh;
   display: grid;
   grid-template-rows: 50px 1fr;
@@ -31,6 +30,7 @@ body {
     "nav"
     "main";
   font-size: 1.8rem;
+  background-color: rgb(160, 160, 226);
 }
 
 body > main {
@@ -38,7 +38,7 @@ body > main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e8eceb;
+  background-color: rgb(160, 160, 226);
   padding: 20px;
 }
 
@@ -48,7 +48,7 @@ body > main h1:first-child {
 
 body > nav {
   grid-area: nav;
-  background-color: #b8c0c2;
+  background-color: rgb(73, 73, 128);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -66,11 +66,26 @@ nav > a {
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
-  color: #424748;
+  color: aliceblue;
+}
+
+.main-title {
+  text-align: center;
+  display: flex;
+  margin: auto;
+  padding-bottom: 400px;
+  color: aliceblue;
+  background-color: rgb(160, 160, 226);
+}
+
+.main-page {
+  background-color: rgb(160, 160, 226);
+  text-align: center;
+  display: flex;
 }
 
 nav > a:visited {
-  color: #424748;
+  color: aliceblue;
 }
 
 nav > a:hover {
@@ -82,6 +97,12 @@ nav > a.active {
   color: white;
 }
 
+h1 {
+  color: rgb(30, 30, 30);
+}
+
 .fas::before {
   font-family: "Font Awesome 5 Free";
+  font-size: 36px;
+  color: rgb(160, 160, 226);
 }

@@ -4,30 +4,23 @@ table {
 
 table thead th {
   padding: 5px;
+  border: 2px solid black;
+  color: rgb(30, 30, 30);
 }
 
 table td {
   padding: 10px;
   text-align: center;
   border: 2px solid black;
+  color: rgb(30, 30, 30)
 }
 
-#list td:nth-child(2),
-#list td:nth-child(3) {
-  min-width: 100px;
+nav > a:visited {
+  color: aliceblue;
 }
 
-#list a {
-  border-radius: 4px;
-  background-color: #b8c0c2;
-  padding: 4px;
-  text-decoration: none;
-  font-size: 1.6rem;
-  color: #424748;
-}
-
-#list a:visited{
-  color: #424748;
+a {
+  color: rgb(48, 2, 70);
 }
 
 #list a:hover {
